@@ -10,7 +10,12 @@ public class notas_arrays {
         System.out.println("Ingresa la cantidad total de estudiantes -> ");
         int total_students = sc.nextInt();
 
+<<<<<<< HEAD
         int notesQuantity = 4;
+=======
+        System.out.print("Ingresa la catidad de notas por estudiante -> ");
+        int notesQuantity = sc.nextInt();
+>>>>>>> parent of e03e466 (la resta de las notas en la funcion necessaryGrade debe hacerce en el un loop para que el cliente ingrese una cantidad de notas diferente a 4)
 
         float[][] student_grades = new float[total_students][notesQuantity + 1];
 
