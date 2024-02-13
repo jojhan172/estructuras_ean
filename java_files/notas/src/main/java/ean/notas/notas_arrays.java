@@ -14,8 +14,8 @@ public class notas_arrays {
         System.out.println("Ingresa la cantidad total de estudiantes -> ");
         int total_students = sc.nextInt();
 
-        System.out.print("Ingresa la catidad de notas por estudiante -> ");
-        int notesQuantity = sc.nextInt();
+        // System.out.print("Ingresa la catidad de notas por estudiante -> "); // para que esta linea funcione se requiere una motificación en la funcion que calcula la nota necesaria
+        int notesQuantity = 4;
 
         float[][] student_grades = new float[total_students][notesQuantity + 1];
 
