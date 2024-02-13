@@ -5,22 +5,16 @@ import java.text.DecimalFormat;
 import java.util.*;
 public class notas_arrays {
     public static void main(String[] args){
-        // float[][] student_grades = new float[10][4];
-        // student_grades[0] = new float[]{1, 2, 3, 4};
-
-
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Ingresa la cantidad total de estudiantes -> ");
         int total_students = sc.nextInt();
 
-        // System.out.print("Ingresa la catidad de notas por estudiante -> "); // para que esta linea funcione se requiere una motificación en la funcion que calcula la nota necesaria
         int notesQuantity = 4;
 
         float[][] student_grades = new float[total_students][notesQuantity + 1];
 
         float goal = 60f; // minimum grade to approve
-        //float[] grades = new float[0];
 
         for (int i = 0; i<total_students; i++){
             float[] grades = new float[0];
@@ -47,14 +41,9 @@ public class notas_arrays {
 
     static String necessaryGrade(float[] grades, float goal, int notesQuantity){
         DecimalFormat df = new DecimalFormat("#.00");
-        //float totalActualGrades = 0;
-        //for (int i = 0; i< notesQuantity; i++){
-        //  totalActualGrades = (grades[0]*(0.1)) - (grade2*per2) - (grade3*per3) - (grade4*per4);
-        //}
-
+        
         float gradeNeeded = (float) ((goal - (grades[0]*(0.1)) - (grades[1]*(0.15)) - (grades[2]*(0.2)) - (grades[3]*(0.25))) /  (0.3));
 
-        //System.out.println("Necesitas sacar minimo: " + df.format(gradeNeeded));
         return df.format(gradeNeeded);
     }
 }
