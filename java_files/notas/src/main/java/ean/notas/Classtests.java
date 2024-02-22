@@ -1,4 +1,4 @@
-package com.mycompany.classtests;
+package ean.notas;
 
 import java.util.Scanner;
 
@@ -16,9 +16,9 @@ public class Classtests {
        
     }
 
-    public static void float calcularPromedio() {
-        float[] promEst = new float[];
+    //public static void float calcularPromedio() {
+        //float[] promEst = new float[];
         
-    }
+    //}
 
 }
