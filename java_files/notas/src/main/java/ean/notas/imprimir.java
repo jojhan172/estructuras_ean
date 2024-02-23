@@ -1,3 +1,5 @@
+package ean.notas;
+
 import java.util.Scanner;
 
 public class imprimir {

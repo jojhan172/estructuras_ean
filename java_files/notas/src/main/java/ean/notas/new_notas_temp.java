@@ -3,11 +3,11 @@ package ean.notas;
 import java.util.Scanner;
 
 public class new_notas_temp {
+ew Scanner(System.in);
 
     public static void cargarNombres(){
         System.out.println("Ingrese la cantidad total de estudiantes");
-        Scanner sc = new Scanner(System.in);
-
+        Scanner sc = n
         return;
     }
 
