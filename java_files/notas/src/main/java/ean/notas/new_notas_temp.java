@@ -3,6 +3,7 @@ package ean.notas;
 import java.util.Scanner;
 
 public class new_notas_temp {
+
     private int totalStudents;
     private String[] names;
     private int[] ids;
@@ -12,6 +13,7 @@ public class new_notas_temp {
     private float[] corte4;
     private float[] promedios;
     public void loadData(int totalStudents, int[] ids, float[] corte1, float[] corte2,float[] corte3,float[] corte4){
+
         Scanner sc = new Scanner(System.in);
 
         names = new String[totalStudents];
@@ -88,7 +90,7 @@ public class new_notas_temp {
             corte3 = new float[totalStudents];
             corte4 = new float[totalStudents];
 
-            data = loadData(totalStudents, names, ids, corte1, corte2, corte3, corte4);
+            //data = loadData(totalStudents, names, ids, corte1, corte2, corte3, corte4);
         }
 
     }
