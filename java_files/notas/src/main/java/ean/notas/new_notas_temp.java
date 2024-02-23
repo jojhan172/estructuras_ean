@@ -6,14 +6,12 @@ public class new_notas_temp {
 
 
 
-    public static String[] cargarNombres(int cantidadEstudiantes, String[] nombresEstudiantes, int n ){
-        Scanner sc = new Scanner(System.in);
-        // n = student array position
-        // función para añadir todos los nombres al array de nombres
-        System.out.println("Ingresa el nombres del estudiante");
-        nombresEstudiantes[n] = sc.next();
 
-        return nombresEstudiantes;
+    public static void cargarNombres(){
+        System.out.println("Ingrese la cantidad total de estudiantes");
+        Scanner sc = new Scanner(System.in);
+
+        return;
     }
 
     public static int[] cargarId(int cantidadEstudiantes, int[] idEstudiantes, int n){
@@ -59,6 +57,23 @@ public class new_notas_temp {
     }
 
     public static void main (String[] args){
+        int totalStudents;
+        String[] name;
+        int[] studentId;
+        float[] corte1;
+        float[] corte2;
+        float[] corte3;
+        float[] corte4;
+        float[] promedios;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa la cantidad total de estudiantes");
+        totalStudents = sc.nextInt();
+    }
+}
+
+        /*
+
         String[] nombresEstudiantes;
         float[][] notas;
         int[] idEstudiantes;
@@ -107,13 +122,12 @@ public class new_notas_temp {
 
     }
 }
-
-
+*/
 
 /*
        [
 *      [1,2,3,3]
-       [1,2,3,3]
+ *     [1,2,3,3]
 *      ]
 *
 *
