@@ -15,9 +15,10 @@ public class Classtests {
         float corte4[];
        
     }
+
     public static void float calcularPromedio() {
         float[] promEst = new float[];
 
     }
 
-}
+
