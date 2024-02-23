@@ -5,40 +5,58 @@ import java.util.Scanner;
 public class new_notas_temp {
 ew Scanner(System.in);
 
+<<<<<<< HEAD
     public static void cargarNombres(){
         System.out.println("Ingrese la cantidad total de estudiantes");
         Scanner sc = n
+=======
+    private int totalStudents;
+    private String[] names;
+    private int[] ids;
+    private float[] corte1;
+    private float[] corte2;
+    private float[] corte3;
+    private float[] corte4;
+    private float[] promedios;
+    public void loadData(int totalStudents, int[] ids, float[] corte1, float[] corte2,float[] corte3,float[] corte4){
+
+        Scanner sc = new Scanner(System.in);
+
+        names = new String[totalStudents];
+
+        for ( int i = 0; i< totalStudents; i++){
+            System.out.println("Ingrese el nombre del estudiante #" +(i+1));
+            names[i] = sc.next();
+            System.out.println("Ingrese el número de Id del estudiante #" +(i+1));
+            ids[i] = sc.nextInt();
+            for (int j = 0; j<4; j++){
+                System.out.println("Ingrese la nota del corte #"+(j+1)+" del estudiante #"+(i+1));
+                switch (j){
+                    case 0:
+                        corte1[i]= sc.nextFloat();
+                        break;
+                    case 1:
+                        corte2[i] = sc.nextFloat();
+                        break;
+                    case 2:
+                        corte3[i] = sc.nextFloat();
+                        break;
+                    case 3:
+                        corte4[i] = sc.nextFloat();
+                }
+            }
+        }
+>>>>>>> 9bee288762c220b2dc12f176c4c35e2940503a53
         return;
     }
 
-    public static int[] cargarId(int cantidadEstudiantes, int[] idEstudiantes, int n){
+    public static int menu(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ingresa el Id del estudiante");
-        idEstudiantes[n] = sc.nextInt();
-        return idEstudiantes;
-    }
-
-
-
-    public static float[][] cargarNotas(int cantidadEstudiantes, float[][] notas, int i, int j){
-        Scanner sc = new Scanner(System.in);
-        // i = Posicion del estudiante dentro del array
-        // notas = [Cant. Estudiantes][N. Cortes = 4]
-        // Multi dim array = array[rows][columns]
-        //              N. Cortes indx = 0 corte 1, indx 1 = corte 2,  indx n = corte n+1
-        System.out.println("Ingresa la nota del corte "+(j+1));
-        float nota = sc.nextFloat();
-        if (nota < 0 || nota > 100){
-            nota = take(nota);
-        }
-        notas [j][i] = nota;
-        return notas;
-    }
-
-    public static void printMenu(){
         System.out.println("Menu");
         System.out.println("1. Cargar \n2. Ordenar\n3.Calcular Definitiva\n0. Salir");
+        int option = sc.nextInt();
+        return option;
     }
 
     public static float take(float nota){
@@ -55,8 +73,8 @@ ew Scanner(System.in);
 
     public static void main (String[] args){
         int totalStudents;
-        String[] name;
-        int[] studentId;
+        String[] names;
+        int[] ids;
         float[] corte1;
         float[] corte2;
         float[] corte3;
@@ -64,8 +82,24 @@ ew Scanner(System.in);
         float[] promedios;
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingresa la cantidad total de estudiantes");
-        totalStudents = sc.nextInt();
+
+
+
+        int option = menu();
+
+        if (option == 1){
+            System.out.println("Ingrese la cantidad total de estudiantes");
+            totalStudents = sc.nextInt();
+            names = new String[totalStudents];
+            ids = new int[totalStudents];
+            corte1 = new float[totalStudents];
+            corte2 = new float[totalStudents];
+            corte3 = new float[totalStudents];
+            corte4 = new float[totalStudents];
+
+            //data = loadData(totalStudents, names, ids, corte1, corte2, corte3, corte4);
+        }
+
     }
 }
 
