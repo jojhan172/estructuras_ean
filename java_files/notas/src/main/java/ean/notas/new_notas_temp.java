@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 public class new_notas_temp {
 
-
-
-
     public static void cargarNombres(){
         System.out.println("Ingrese la cantidad total de estudiantes");
         Scanner sc = new Scanner(System.in);
