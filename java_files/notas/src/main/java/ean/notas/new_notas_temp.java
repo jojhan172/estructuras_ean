@@ -76,60 +76,6 @@ public class new_notas_temp {
         return;
     }
 
-    public static void quickSort(int[] numeros, String[] vector1, float[] vector2, int izquierda, int derecha) {
-        if (izquierda < derecha) {
-            int indiceParticion = particionar(numeros, vector1, vector2, izquierda, derecha);
-            quickSort(numeros, vector1, vector2, izquierda, indiceParticion - 1);
-            quickSort(numeros, vector1, vector2, indiceParticion + 1, derecha);
-        }
-    }
-
-    public static int particionar(int[] numeros, String[] vector1, float[] vector2, int izquierda, int derecha) {
-        int pivote = numeros[derecha];
-        int indiceMenor = (izquierda - 1);
-        for (int i = izquierda; i < derecha; i++) {
-            if (numeros[i] <= pivote) {
-                indiceMenor++;
-                intercambiarInt(numeros, indiceMenor, i);
-                intercambiar(vector1, indiceMenor, i);
-                intercambiarFloat(vector2, indiceMenor, i);
-
-            }
-        }
-        intercambiarInt(numeros, indiceMenor + 1, derecha);
-        intercambiar(vector1, indiceMenor + 1, derecha);
-        intercambiarFloat(vector2, indiceMenor + 1, derecha);
-
-        return indiceMenor + 1;
-    }
-
-    // Método genérico para intercambiar elementos en un vector
-    public static <T> void intercambiar(T[] vector, int i, int j) {
-        T temp = vector[i];
-        vector[i] = vector[j];
-        vector[j] = temp;
-    }
-    public static <T> void intercambiarInt(int[] vector, int i, int j) {
-        int temp = vector[i];
-        vector[i] = vector[j];
-        vector[j] = temp;
-    }
-    public static <T> void intercambiarFloat(float[] vector, int i, int j) {
-        float temp = vector[i];
-        vector[i] = vector[j];
-        vector[j] = temp;
-    }
-
-    // Método para mostrar los vectores paralelos
-    public static void mostrarVectoresParalelos(int[] numeros, String[] vector1, float[] vector2) {
-        System.out.println("Números\tVector1\tVector2\tVector3\tVector4");
-        for (int i = 0; i < numeros.length; i++) {
-            System.out.println(numeros[i] + "\t" + vector1[i] + "\t" + vector2[i]);
-        }
-    }
-
-
-
 
     public static void main (String[] args) {
 
@@ -147,9 +93,9 @@ public class new_notas_temp {
                     notas.loadData(totalStudents);
                 case 2:
                     final int N = notas.ids.length;
-                    notas.quickSort(notas.ids, notas.names, notas.corte1, 0, notas.ids.length);
+                    //notas.quickSort(notas.ids, notas.names, notas.corte1, 0, notas.ids.length);
                     System.out.println("Id     \tNombre     \tCorte 1");
-                    notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
+                    //notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
             }
             option = notas.menu();
         }
