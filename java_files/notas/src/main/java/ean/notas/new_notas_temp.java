@@ -3,7 +3,6 @@ package ean.notas;
 import java.util.Scanner;
 
 public class new_notas_temp {
-ew Scanner(System.in);
 
 <<<<<<< HEAD
     public static void cargarNombres(){
