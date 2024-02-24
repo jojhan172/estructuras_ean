@@ -3,6 +3,7 @@ package ean.notas;
 import java.util.Scanner;
 
 public class new_notas_temp {
+
     private String[] names;
     private int[] ids;
     private float[] corte1;
