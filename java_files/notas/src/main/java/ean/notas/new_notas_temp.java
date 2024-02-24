@@ -3,14 +3,6 @@ package ean.notas;
 import java.util.Scanner;
 
 public class new_notas_temp {
-ew Scanner(System.in);
-
-<<<<<<< HEAD
-    public static void cargarNombres(){
-        System.out.println("Ingrese la cantidad total de estudiantes");
-        Scanner sc = n
-=======
-    private int totalStudents;
     private String[] names;
     private int[] ids;
     private float[] corte1;
@@ -18,11 +10,38 @@ ew Scanner(System.in);
     private float[] corte3;
     private float[] corte4;
     private float[] promedios;
-    public void loadData(int totalStudents, int[] ids, float[] corte1, float[] corte2,float[] corte3,float[] corte4){
+    public int menu(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Menu");
+        System.out.println("1. Cargar \n2. Ordenar\n3.Calcular Definitiva\n0. Salir");
+        int option = sc.nextInt();
+        return option;
+    }
+
+    public static float check(float nota){
+        Scanner sc = new Scanner(System.in);
+        if (nota < 0 || nota > 100){
+            System.out.println("Ingrese un número válido");
+            float new_nota = sc.nextFloat();
+            check(new_nota);
+        }else{
+            return nota;
+        }
+        return nota;
+    }
+
+    public void loadData(int totalStudents){
+        float nota;
 
         Scanner sc = new Scanner(System.in);
 
         names = new String[totalStudents];
+        ids = new int[totalStudents];
+        corte1 = new float[totalStudents];
+        corte2 = new float[totalStudents];
+        corte3 = new float[totalStudents];
+        corte4 = new float[totalStudents];
 
         for ( int i = 0; i< totalStudents; i++){
             System.out.println("Ingrese el nombre del estudiante #" +(i+1));
@@ -33,71 +52,106 @@ ew Scanner(System.in);
                 System.out.println("Ingrese la nota del corte #"+(j+1)+" del estudiante #"+(i+1));
                 switch (j){
                     case 0:
-                        corte1[i]= sc.nextFloat();
+                        nota = sc.nextFloat();
+                        float notaVerificada = check(nota);
+                        corte1[i]= notaVerificada;
                         break;
                     case 1:
-                        corte2[i] = sc.nextFloat();
+                        nota = sc.nextFloat();
+                        notaVerificada = check(nota);
+                        corte2[i] = notaVerificada;
                         break;
                     case 2:
-                        corte3[i] = sc.nextFloat();
+                        nota = sc.nextFloat();
+                        notaVerificada = check(nota);
+                        corte3[i] = notaVerificada;
                         break;
                     case 3:
-                        corte4[i] = sc.nextFloat();
+                        nota = sc.nextFloat();
+                        notaVerificada = check(nota);
+                        corte4[i] = notaVerificada;
                 }
             }
         }
->>>>>>> 9bee288762c220b2dc12f176c4c35e2940503a53
         return;
     }
 
-    public static int menu(){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Menu");
-        System.out.println("1. Cargar \n2. Ordenar\n3.Calcular Definitiva\n0. Salir");
-        int option = sc.nextInt();
-        return option;
-    }
-
-    public static float take(float nota){
-        Scanner sc = new Scanner(System.in);
-        nota = sc.nextFloat();
-        if (nota < 0 || nota > 100){
-            System.out.println("Ingrese un numero valido");
-            take(nota);
-        }else{
-            return nota;
+    public static void quickSort(int[] numeros, String[] vector1, float[] vector2, int izquierda, int derecha) {
+        if (izquierda < derecha) {
+            int indiceParticion = particionar(numeros, vector1, vector2, izquierda, derecha);
+            quickSort(numeros, vector1, vector2, izquierda, indiceParticion - 1);
+            quickSort(numeros, vector1, vector2, indiceParticion + 1, derecha);
         }
-        return nota;
     }
 
-    public static void main (String[] args){
-        int totalStudents;
-        String[] names;
-        int[] ids;
-        float[] corte1;
-        float[] corte2;
-        float[] corte3;
-        float[] corte4;
-        float[] promedios;
+    public static int particionar(int[] numeros, String[] vector1, float[] vector2, int izquierda, int derecha) {
+        int pivote = numeros[derecha];
+        int indiceMenor = (izquierda - 1);
+        for (int i = izquierda; i < derecha; i++) {
+            if (numeros[i] <= pivote) {
+                indiceMenor++;
+                intercambiarInt(numeros, indiceMenor, i);
+                intercambiar(vector1, indiceMenor, i);
+                intercambiarFloat(vector2, indiceMenor, i);
 
+            }
+        }
+        intercambiarInt(numeros, indiceMenor + 1, derecha);
+        intercambiar(vector1, indiceMenor + 1, derecha);
+        intercambiarFloat(vector2, indiceMenor + 1, derecha);
+
+        return indiceMenor + 1;
+    }
+
+    // Método genérico para intercambiar elementos en un vector
+    public static <T> void intercambiar(T[] vector, int i, int j) {
+        T temp = vector[i];
+        vector[i] = vector[j];
+        vector[j] = temp;
+    }
+    public static <T> void intercambiarInt(int[] vector, int i, int j) {
+        int temp = vector[i];
+        vector[i] = vector[j];
+        vector[j] = temp;
+    }
+    public static <T> void intercambiarFloat(float[] vector, int i, int j) {
+        float temp = vector[i];
+        vector[i] = vector[j];
+        vector[j] = temp;
+    }
+
+    // Método para mostrar los vectores paralelos
+    public static void mostrarVectoresParalelos(int[] numeros, String[] vector1, float[] vector2) {
+        System.out.println("Números\tVector1\tVector2\tVector3\tVector4");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println(numeros[i] + "\t" + vector1[i] + "\t" + vector2[i]);
+        }
+    }
+
+
+
+
+    public static void main (String[] args) {
+
+        new_notas_temp notas = new new_notas_temp(); // se instancia un nuevo objeto para poder usar los nuevos metodos
+
+        int totalStudents;
         Scanner sc = new Scanner(System.in);
 
-
-
-        int option = menu();
-
-        if (option == 1){
-            System.out.println("Ingrese la cantidad total de estudiantes");
-            totalStudents = sc.nextInt();
-            names = new String[totalStudents];
-            ids = new int[totalStudents];
-            corte1 = new float[totalStudents];
-            corte2 = new float[totalStudents];
-            corte3 = new float[totalStudents];
-            corte4 = new float[totalStudents];
-
-            //data = loadData(totalStudents, names, ids, corte1, corte2, corte3, corte4);
+        int option = notas.menu();
+        while (option != 0){
+            switch (option) {
+                case 1:
+                    System.out.println("Ingrese la cantidad total de estudiantes");
+                    totalStudents = sc.nextInt();
+                    notas.loadData(totalStudents);
+                case 2:
+                    final int N = notas.ids.length;
+                    notas.quickSort(notas.ids, notas.names, notas.corte1, 0, notas.ids.length);
+                    System.out.println("Id     \tNombre     \tCorte 1");
+                    notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
+            }
+            option = notas.menu();
         }
 
     }
