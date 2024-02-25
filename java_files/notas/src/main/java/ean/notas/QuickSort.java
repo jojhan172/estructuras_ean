@@ -1,7 +1,8 @@
 package ean.notas;
+
 public class QuickSort {
 
-    private static int vec[]={20,12,28,24,8,4,16};
+    private static int vec[] = {20, 12, 28, 24, 8, 4, 16};
 
     public static void main(String[] args) {
         System.out.println("Vector original");
@@ -11,42 +12,44 @@ public class QuickSort {
         imprimirVector(vec);
     }
 
-    public static void ordenacionRapida(int vec[]){
-        final int N=vec.length;
-        quickSort(vec, 0, N-1);
+    public static void ordenacionRapida(int vec[]) {
+        final int N = vec.length;
+        quickSort(vec, 0, N - 1);
     }
 
-    public static void quickSort(int vec[], int inicio, int fin){
-        if(inicio>=fin) return;
-        int pivote=vec[inicio];
-        int elemIzq=inicio+1;
-        int elemDer=fin;
-        while(elemIzq<=elemDer){
-            while(elemIzq<=fin && vec[elemIzq]<pivote){
+    public static void quickSort(int vec[], int inicio, int fin) {
+        if (inicio >= fin) {
+            return;
+        }
+        int pivote = vec[inicio];
+        int elemIzq = inicio + 1;
+        int elemDer = fin;
+        while (elemIzq <= elemDer) {
+            while (elemIzq <= fin && vec[elemIzq] < pivote) {
                 elemIzq++;
             }
-            while(elemDer>inicio && vec[elemDer]>=pivote){
+            while (elemDer > inicio && vec[elemDer] >= pivote) {
                 elemDer--;
             }
-            if(elemIzq<elemDer){
-                int temp=vec[elemIzq];
-                vec[elemIzq]=vec[elemDer];
-                vec[elemDer]=temp;
+            if (elemIzq < elemDer) {
+                int temp = vec[elemIzq];
+                vec[elemIzq] = vec[elemDer];
+                vec[elemDer] = temp;
             }
         }
 
-        if(elemDer>inicio){
-            int temp=vec[inicio];
-            vec[inicio]=vec[elemDer];
-            vec[elemDer]=temp;
+        if (elemDer > inicio) {
+            int temp = vec[inicio];
+            vec[inicio] = vec[elemDer];
+            vec[elemDer] = temp;
         }
-        quickSort(vec, inicio, elemDer-1);
-        quickSort(vec, elemDer+1, fin);
+        quickSort(vec, inicio, elemDer - 1);
+        quickSort(vec, elemDer + 1, fin);
     }
 
-    public static void imprimirVector(int vec[]){
-        for(int i=0;i<vec.length;i++){
-            System.out.print(vec[i]+" ");
+    public static void imprimirVector(int vec[]) {
+        for (int i = 0; i < vec.length; i++) {
+            System.out.print(vec[i] + " ");
         }
     }
 

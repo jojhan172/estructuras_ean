@@ -100,7 +100,6 @@ public class new_notas_temp {
             }
             option = notas.menu();
         }
-
     }
 }
 
