@@ -10,7 +10,7 @@ public class new_notas_temp {
     private float[] corte2;
     private float[] corte3;
     private float[] corte4;
-    private float[] promedios;
+    private float[] definitivas;
     public int menu(){
         Scanner sc = new Scanner(System.in);
 
@@ -20,7 +20,11 @@ public class new_notas_temp {
         return option;
     }
 
+    /* La función check verifica que la nota ingresada por el usuario cumpla
+    *  con los parametros establecidos es decir que la nota este solo entre 0 y 100
+    */
     public static float check(float nota){
+
         Scanner sc = new Scanner(System.in);
         if (nota < 0 || nota > 100){
             System.out.println("Ingrese un número válido");
@@ -36,13 +40,14 @@ public class new_notas_temp {
         float nota;
 
         Scanner sc = new Scanner(System.in);
-
+        // Se instancian los distintos arrays con el tamaño indicado por el usuario
         names = new String[totalStudents];
         ids = new int[totalStudents];
         corte1 = new float[totalStudents];
         corte2 = new float[totalStudents];
         corte3 = new float[totalStudents];
         corte4 = new float[totalStudents];
+        definitivas = new float[totalStudents];
 
         for ( int i = 0; i< totalStudents; i++){
             System.out.println("Ingrese el nombre del estudiante #" +(i+1));
@@ -115,6 +120,7 @@ public class new_notas_temp {
                 swap(corte2, i, minIndex); // Usa la versión del método swap para float[]
                 swap(corte3, i, minIndex); // Usa la versión del método swap para float[]
                 swap(corte4, i, minIndex); // Usa la versión del método swap para float[]
+                swap(definitivas,i ,minIndex);
             }
         }
     }
@@ -125,6 +131,29 @@ public class new_notas_temp {
     del array.
      */
 
+    private void calcularDefinitiva(int i){
+        /* Se usaron las ponderaciones que usa la EAN
+         * ponderaciones
+         * corte 1 = 20%
+         * corte 2 = 30%
+         * corte 3 = 30%
+         * corte 4 = 20%
+         * total = 100%
+         */
+        definitivas[i] = (float) ((corte1[i]*(0.2)) + (corte2[i]*(0.3)) + (corte3[i]*(0.3)) + (corte4[i]*(0.2)));
+        // Expresion regular para el formateo de strings en java, los numeros significan el espacio entre los datos
+        // y las letras el tipo de dato
+        System.out.printf("%-12d%-12s%-12.2f%-12.2f%-12.2f%-12.2f%-12.2f%n", ids[i], names[i], corte1[i], corte2[i], corte3[i], corte4[i], definitivas[i]);
+    }
+
+    private float calcularPromedioCurso(float[] definitivas){
+        float contador = 0;
+        for (float i: definitivas){
+            contador += i;
+        }
+        return contador/definitivas.length;
+
+    }
 
     public static void main (String[] args) {
 
@@ -134,6 +163,8 @@ public class new_notas_temp {
         Scanner sc = new Scanner(System.in);
 
         int option = notas.menu();
+
+        // Ingresar 0 permite al usuario salir del programa
         while (option != 0){
             switch (option) {
                 case 1:
@@ -142,79 +173,26 @@ public class new_notas_temp {
                     notas.loadData(totalStudents);
                 case 2:
                     final int N = notas.ids.length;
-                    //notas.quickSort(notas.ids, notas.names, notas.corte1, 0, notas.ids.length);
-                    System.out.println("Id     \tNombre     \tCorte 1");
+                    System.out.println("Id          Nombre      Corte 1     Corte 2     Corte 3     Corte 4");
                     for (int i = 0; i < N; i++){
-                        System.out.printf("%-8d%-12s%-12.2f%n", notas.ids[i], notas.names[i], notas.corte1[i]);
+                        // Expresion regular para el formateo de strings en java, los numeros significan el espacio entre los datos
+                        // y las letras el tipo de dato
+                        System.out.printf("%-12d%-12s%-12.2f%-12.2f%-12.2f%-12.2f%n", notas.ids[i], notas.names[i], notas.corte1[i], notas.corte2[i], notas.corte3[i], notas.corte4[i]);
                     }
 
                     notas.sortById();
 
                     break;
-                //notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
+                case 3:
+                    int n = notas.ids.length;
+                    System.out.println("Id          Nombre      Corte 1     Corte 2     Corte 3     Corte 4     Definitiva");
+                    for (int i = 0; i < n; i++){
+                        notas.calcularDefinitiva(i);
+                    }
+                    System.out.println("\nEl promedio del curso es de: " + notas.calcularPromedioCurso(notas.definitivas));
+
             }
             option = notas.menu();
         }
     }
 }
-
-        /*
-
-        String[] nombresEstudiantes;
-        float[][] notas;
-        int[] idEstudiantes;
-        int cantidadEstudiantes;
-
-        Scanner sc = new Scanner(System.in);
-        // cantidadEstudiantes
-        int option = -1;
-
-        // Menu
-        printMenu();
-        option = sc.nextInt();
-        while (option != 0) {
-            if (option == 1) {
-                System.out.println("Ingrese la cantidad de estudiantes");
-                cantidadEstudiantes=sc.nextInt();
-
-                nombresEstudiantes = new String[cantidadEstudiantes];
-                notas = new float[4][cantidadEstudiantes];
-                idEstudiantes = new int[cantidadEstudiantes];
-
-                for (int i = 0; i<(cantidadEstudiantes); i++){
-                    nombresEstudiantes = cargarNombres(cantidadEstudiantes, nombresEstudiantes, i);
-                    for (int j = 0; j<4; j++){
-                        notas = cargarNotas(cantidadEstudiantes, notas, i, j);
-                    }
-                    idEstudiantes = cargarId(cantidadEstudiantes, idEstudiantes, i);
-                }
-
-                System.out.println("Todos los estudiantes añadidos correctamente");
-                printMenu();
-                option = sc.nextInt();
-
-            } else if (option == 2) {
-                option = sc.nextInt();
-                //ejecutar QuickSort
-            } else if (option == 3) {
-                option = sc.nextInt();
-                // ejecutar calcular
-            } else {
-                System.out.println("Ingresa un número valido");
-                option = sc.nextInt();
-            }
-
-        }
-
-    }
-}
-*/
-
-/*
-       [
-*      [1,2,3,3]
- *     [1,2,3,3]
-*      ]
-*
-*
-* */
