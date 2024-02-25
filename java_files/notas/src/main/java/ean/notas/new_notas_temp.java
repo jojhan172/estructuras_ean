@@ -77,6 +77,54 @@ public class new_notas_temp {
         return;
     }
 
+    public void swap(float[] array, int i, int j){
+        float temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public void swap(String[] array, int i, int j) {
+        String temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    /*
+    Los swap son para ordenar los ids de menor a mayor, se tienen 3 con float, String, int para que
+    estos puedan ser leídos correctamente según el tipo de dato
+     */
+
+    private void sortById() {
+        for (int i = 0; i < ids.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < ids.length; j++) {
+                if (ids[j] < ids[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) {
+                swap(ids, i, minIndex);
+                swap(names, i, minIndex);
+                swap(corte1, i, minIndex); // Usa la versión del método swap para float[]
+                swap(corte2, i, minIndex); // Usa la versión del método swap para float[]
+                swap(corte3, i, minIndex); // Usa la versión del método swap para float[]
+                swap(corte4, i, minIndex); // Usa la versión del método swap para float[]
+            }
+        }
+    }
+
+    /*
+    Este método se busca el el número de ID más bajo dentro de los elementos del array, se hacen comparaciones según los
+    datos ingresados y se guarda el número más bajo dentro del minIndex, con le método swap se intercambian los elementos
+    del array.
+     */
+
 
     public static void main (String[] args) {
 
@@ -96,7 +144,14 @@ public class new_notas_temp {
                     final int N = notas.ids.length;
                     //notas.quickSort(notas.ids, notas.names, notas.corte1, 0, notas.ids.length);
                     System.out.println("Id     \tNombre     \tCorte 1");
-                    //notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
+                    for (int i = 0; i < N; i++){
+                        System.out.printf("%-8d%-12s%-12.2f%n", notas.ids[i], notas.names[i], notas.corte1[i]);
+                    }
+
+                    notas.sortById();
+
+                    break;
+                //notas.mostrarVectoresParalelos(notas.ids, notas.names, notas.corte1);
             }
             option = notas.menu();
         }
