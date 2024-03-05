@@ -15,7 +15,7 @@ public class new_notas_temp {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Menu");
-        System.out.println("1. Cargar \n2. Ordenar\n3.Calcular Definitiva\n0. Salir");
+        System.out.println("1. Cargar \n2. Ordenar\n3. Calcular Definitiva\n0. Salir");
         int option = sc.nextInt();
         return option;
     }
